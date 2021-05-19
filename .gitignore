@@ -1,0 +1,18 @@
+#compiled output
+/dist
+/node_modules
+
+#logs
+logs
+*.logs
+npm-debug.log*
+
+#OS
+.DS_Store
+
+#IDE - VSCode      !号表示不排除的文件
+.vscode/*
+!.vscode/setting.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

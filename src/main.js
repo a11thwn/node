@@ -40,5 +40,5 @@ app.get('/posts/:postId', (resquest, response) => {
   const posts = data.filter(item => item.id == postId);
 
   //作出响应
-  response.send(posts);
+  response.send(posts[0]);
 });

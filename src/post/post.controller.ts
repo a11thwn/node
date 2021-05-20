@@ -4,7 +4,7 @@ import { getPosts } from './post.service';
 /**
  *   内容列表
  */
-export const index = (
+export const index = async (
   request: Request,
   response: Response,
   next: NextFunction,
@@ -12,6 +12,6 @@ export const index = (
   if (request.headers.authorization !== 'SECRET') {
     return next(new Error());
   }
-  const posts = getPosts();
+  const posts = await getPosts();
   response.send(posts);
 };

@@ -26,6 +26,9 @@ export const validateLoginData = async (
   const matched = await bcrypt.compare(password, user.password);
   if (!matched) return next(new Error('PASSWORD_DOS_NOT_MATCHED'));
 
+  //在请求主体添加用户
+  request.body.user = user;
+
   // 下一步
   next();
 };

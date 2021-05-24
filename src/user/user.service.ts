@@ -21,16 +21,19 @@ export const createrUser = async (user: UserModel) => {
 /**
  *  按用户名查找用户
  */
-interface GetUserOption {
+interface GetUserOptions {
   password?: boolean;
 }
-export const getUserByName = async (name: string, options?: GetUserOption) => {
+export const getUserByName = async (
+  name: string,
+  options: GetUserOptions = {},
+) => {
   //准备选项
   const { password } = options;
 
   //准备查询
   const statement = `
-  SELECT
+  SELECT 
   id,
   name
   ${password ? ', password' : ''}

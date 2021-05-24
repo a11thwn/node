@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import { networkInterfaces } from 'os';
 
 /**
  *  输出请求地址

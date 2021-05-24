@@ -10,7 +10,9 @@ export const login = async (
   next: NextFunction,
 ) => {
   //准备数据
-  const { id, name } = request.body;
+  const {
+    user: { id, name },
+  } = request.body;
 
   const payload = { id, name };
 
@@ -23,4 +25,16 @@ export const login = async (
   } catch (error) {
     next(error);
   }
+};
+
+/**
+ *  验证登录
+ */
+export const validate = (
+  request: Request,
+  response: Response,
+  next: NextFunction,
+) => {
+  console.log(request.user);
+  response.sendStatus(200);
 };

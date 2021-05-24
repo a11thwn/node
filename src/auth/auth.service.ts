@@ -1,14 +1,14 @@
 import jwt from 'jsonwebtoken';
-import { PRIVATE_KEY, PUBLIC_KEY } from '../app/app.config';
+import { PRIVATE_KEY } from '../app/app.config';
 
 /**
  *  签发信息
  */
-interface SignTokenOption {
+interface SignTokenOptions {
   payload?: any;
 }
 
-export const signToken = (options: SignTokenOption) => {
+export const signToken = (options: SignTokenOptions) => {
   //准备数据
   const { payload } = options;
 

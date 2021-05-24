@@ -40,6 +40,10 @@ export const defaultErrorHandler = (
       statusCode = 409;
       message = '用户名已被占用';
       break;
+    case 'USER_DOS_NOT_EXIST':
+      statusCode = 400;
+      message = '用户不存在';
+      break;
     default:
       statusCode = 500;
       message = '服务暂时出了点问题 ~~ 🌴';

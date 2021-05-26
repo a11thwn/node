@@ -34,7 +34,7 @@ export const possess = async (options: PossessOptions) => {
 
   // 准备查询
   const statement = `
-  SELECT COUNT(${resourceType}.id) as cout
+  SELECT COUNT(${resourceType}.id) as count
   FROM ${resourceType}
   WHERE ${resourceType}.id = ? AND userId = ?
   `;

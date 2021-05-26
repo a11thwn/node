@@ -1,6 +1,6 @@
 export class FileModel {
   id?: string;
-  orignalname: string;
+  originalname: string;
   mimetype: string;
   filename: string;
   size: number;

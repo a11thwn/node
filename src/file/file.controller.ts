@@ -18,7 +18,7 @@ export const store = async (
 
   //文件信息
   const fileInfo = _.pick(request.file, [
-    'orignalname',
+    'originalname',
     'mimetype',
     'filename',
     'size',

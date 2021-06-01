@@ -25,7 +25,6 @@ export const store = async (
     //提供数据
     response.status(201).send(data);
   } catch (error) {
-    console.log(error);
     next(error);
   }
 };

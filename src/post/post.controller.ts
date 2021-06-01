@@ -139,7 +139,6 @@ export const storePostTag = async (
     await createPostTag(parseInt(postId, 10), tag.id);
     response.sendStatus(201);
   } catch (error) {
-    console.log(error);
     return next(error);
   }
 };

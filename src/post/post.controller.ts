@@ -25,6 +25,7 @@ export const index = async (
     const posts = await getPosts();
     response.send(posts);
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };

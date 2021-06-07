@@ -11,7 +11,6 @@ import {
 import _ from 'lodash';
 import { TagModel } from '../tag/tag.model';
 import { getTagByName, createTag } from '../tag/tag.service';
-import { nextTick } from 'process';
 
 /**
  *   内容列表
@@ -22,7 +21,10 @@ export const index = async (
   next: NextFunction,
 ) => {
   try {
-    const posts = await getPosts();
+    const posts = await getPosts({
+      sort: request.sort,
+      filter: request.filter,
+    });
     response.send(posts);
   } catch (error) {
     console.log(error);

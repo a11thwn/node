@@ -72,6 +72,15 @@ export const filter = async (
     };
   }
 
+  // 过滤出用户点赞过的内容
+  if (user && action == 'liked' && !tag) {
+    request.filter = {
+      name: 'userLiked',
+      sql: 'user_like_post.userId = ?',
+      param: user as string, // user as string 与教程不一样，按照教程会报错，需要强制转换为 string
+    };
+  }
+
   //下一步
   next();
 };

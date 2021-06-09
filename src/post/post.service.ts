@@ -44,17 +44,20 @@ export const getPosts = async (options: GetPostOptions) => {
    ${sqlFragment.user},
    ${sqlFragment.totalComments},
    ${sqlFragment.file},
-   ${sqlFragment.tags}
+   ${sqlFragment.tags},
+   ${sqlFragment.totalLikes}
   FROM post
   ${sqlFragment.leftJoinUser}
   ${sqlFragment.leftJoinOneFile}
   ${sqlFragment.leftJoinTag}
+  ${filter.name == 'userLiked' ? sqlFragment.innerJoinUserLikePost : ''}
   WHERE ${filter.sql}
   GROUP BY post.id
   ORDER BY ${sort}
   LIMIT ?
   OFFSET ?
   `;
+
   const [data] = await connection.promise().query(statement, params);
   return data;
 };
@@ -179,9 +182,9 @@ export const getPostsTotalCount = async (options: GetPostOptions) => {
     ${sqlFragment.leftJoinUser}
     ${sqlFragment.leftJoinOneFile}
     ${sqlFragment.leftJoinTag}
+    ${filter.name == 'userLiked' ? sqlFragment.innerJoinUserLikePost : ''}
     WHERE ${filter.sql}
   `;
-
   // 执行查询
   const [data] = await connection.promise().query(statement, params);
 

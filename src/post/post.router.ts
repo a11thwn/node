@@ -2,13 +2,20 @@ import express from 'express';
 import * as postController from './post.controller';
 import { authGuard, accesscontrol } from '../auth/auth.middleware';
 import { filter, paginate, sort } from './post.middleware';
+import { POSTS_PER_PAGE } from '../app/app.config';
 
 const router = express.Router();
 
 /**
  *  内容列表
  */
-router.get('/posts', sort, filter, paginate, postController.index);
+router.get(
+  '/posts',
+  sort,
+  filter,
+  paginate(POSTS_PER_PAGE),
+  postController.index,
+);
 
 /**
  *  创建内容
@@ -54,6 +61,11 @@ router.delete(
   accesscontrol({ possession: true }),
   postController.destroyPostTag,
 );
+
+/**
+ *  单个内容
+ */
+router.get('/posts/:postId', postController.show);
 
 /**
  *  导出路由

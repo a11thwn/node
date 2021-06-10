@@ -4,8 +4,10 @@ import {
   isReplyComment,
   updateComment,
   deleteComment,
+  getComments,
+  getcommentsTotalCount,
 } from './comment.service';
-
+import { filter } from './comment.middleware';
 /**
  *  发表评论
  */
@@ -101,7 +103,6 @@ export const update = async (
   }
 };
 
-
 /**
  *  删除评论
  */
@@ -119,7 +120,36 @@ export const destroy = async (
 
     //作出响应
     response.send(data);
+  } catch (error) {}
+};
+
+/**
+ *  评论列表
+ */
+export const index = async (
+  request: Request,
+  response: Response,
+  next: NextFunction,
+) => {
+  //统计评论数量
+  try {
+    const totalCount = await getcommentsTotalCount({ filter: request.filter });
+
+    // 设置响应头部
+    response.header('X-Total-Count', totalCount);
   } catch (error) {
-    
+    next();
+  }
+  // 获取评论列表
+  try {
+    const commnets = await getComments({
+      filter: request.filter,
+      pagination: request.pagination,
+    });
+
+    //作出响应
+    response.send(commnets);
+  } catch (error) {
+    next(error);
   }
 };

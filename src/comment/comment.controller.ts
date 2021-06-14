@@ -6,6 +6,7 @@ import {
   deleteComment,
   getComments,
   getcommentsTotalCount,
+  getCommentReplies,
 } from './comment.service';
 import { filter } from './comment.middleware';
 /**
@@ -151,5 +152,29 @@ export const index = async (
     response.send(commnets);
   } catch (error) {
     next(error);
+  }
+};
+
+/**
+ *  回复列表
+ */
+export const indexReplies = async (
+  request: Request,
+  response: Response,
+  next: NextFunction,
+) => {
+  // 准备数据
+  const { commentId } = request.params;
+
+  // 获取评论回复列表
+  try {
+    const repiles = await getCommentReplies({
+      commentId: parseInt(commentId, 10),
+    });
+
+    //作出响应
+    response.send(repiles);
+  } catch (error) {
+    next();
   }
 };

@@ -43,7 +43,7 @@ export const defaultErrorHandler = (
       statusCode = 400;
       message = '用户不存在';
       break;
-    case 'PASSWORD_DOS_NOT_MATCHED':
+    case 'PASSWORD_DOES_NOT_MATCHED':
       statusCode = 400;
       message = '密码不对';
       break;
@@ -78,6 +78,14 @@ export const defaultErrorHandler = (
     case 'NOT_FOUND':
       statusCode = 404;
       message = '没找到 ~~ 🦖';
+      break;
+    case 'USER_NOT_FOUND':
+      statusCode = 404;
+      message = '没找到这个用户 ~~';
+      break;
+    case 'PASSWORD_IS_THE_SAME':
+      statusCode = 400;
+      message = '要修改的密码不能跟原密码一样';
       break;
     default:
       statusCode = 500;
